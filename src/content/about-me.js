@@ -25,6 +25,6 @@ export default [
   {
     input: 'Manav.skills',
     return:
-      '["Java", "JavaScript", "Python", "React", "SQL", "Web Development", "C Programming"]',
+      '["Java", "JavaScript", "Python", "React", "Angular", "TypeScript", "SQL", "Web Development", "C Programming"]',
   },
 ];
