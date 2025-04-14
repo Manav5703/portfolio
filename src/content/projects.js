@@ -31,7 +31,7 @@ export default [
     title: 'VocalCalc',
     description: 
       'VocalCalc is a modern voice-activated calculator that lets you perform calculations simply by speaking. No more typing complex equations - just say what you want to calculate!',
-    skills: ['Python'],
+    skills: ['Python',  'HTML', 'CSS', 'JavaScript'],
     image: calculator,
     links: {
       github: 'https://github.com/Manav5703/VocalCalc',
