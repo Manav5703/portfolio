@@ -1,4 +1,4 @@
-import calculator from '../images/VocalCalc.png';
+import calculator from '../images/vocalcalcc.png';
 import portfolio from '../images/portfolio.png';
 import taskflowpro from '../images/taskflowpro.png';
 
@@ -30,11 +30,12 @@ export default [
   {
     title: 'VocalCalc',
     description: 
-      'VocalCalc is a Voice-Activated Calculator that allows users to perform basic arithmetic operations using voice commands. This application processes voice input to perform operations like addition, subtraction, multiplication, and division, while providing both visual and audible feedback.',
+      'VocalCalc is a modern voice-activated calculator that lets you perform calculations simply by speaking. No more typing complex equations - just say what you want to calculate!',
     skills: ['Python'],
     image: calculator,
     links: {
       github: 'https://github.com/Manav5703/VocalCalc',
+      preview: 'https://vocalcalc.onrender.com',
     },
   },
 ];
