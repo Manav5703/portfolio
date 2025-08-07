@@ -31,7 +31,7 @@ class ProjectLinks extends React.PureComponent {
           target="_blank"
           className="project-link"
         >
-          Live Demo <FontAwesomeIcon icon="external-link-alt" />
+          Visit Site <FontAwesomeIcon icon="external-link-alt" />
         </a>
         <a
           href={github}
@@ -39,7 +39,7 @@ class ProjectLinks extends React.PureComponent {
           target="_blank"
           className="project-link secondary"
         >
-          <FontAwesomeIcon icon={['fab', 'github']} /> View Source
+          <FontAwesomeIcon icon={['fab', 'github']} /> View Code
         </a>
       </div>
     );
