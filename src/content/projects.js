@@ -13,7 +13,7 @@ export default [
     skills: ['HTML5', 'CSS3', 'JavaScript', 'Node.js', 'Netlify Functions', 'Email Integration'],
     image: worthit,
     links: {
-      github: 'https://github.com/Manav5703/WorthIT',
+      github: 'contact',
       preview: 'https://worthiit.netlify.app/',
     },
   },
