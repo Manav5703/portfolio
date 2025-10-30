@@ -1,20 +1,26 @@
 @import '../scss/_breakpoints';
 @import '../scss/_colors';
 
-.hero-container {
-  margin: 0 auto;
-  margin-top: 20vh;
+// Modern hero section
+.hero-section {
+  position: relative;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
+  padding: var(--space-20) 0;
+  overflow: hidden;
 
-  a {
-    font-weight: bold;
+  // Remove individual background to use global background
+  &::before {
+    display: none;
   }
-
+  
   @include mobile {
-    margin-top: 15vh;
+    padding: var(--space-16) 0;
   }
+
+
+
 
   .hero-title {
     font-family: 'Monaco', Consolas, 'Lucida Console', monospace;
@@ -42,18 +48,83 @@
   }
 
   .hero-description {
-    font-family: 'Camphor', Open Sans, Segoe UI, sans-serif;
-    font-weight: 200;
-    font-size: 1.3em;
-    line-height: 40px;
-    color: $grey;
-    margin: 80px 0;
+    font-family: var(--font-sans);
+    font-weight: 400;
+    font-size: 1.2em;
+    line-height: 1.6;
+    color: var(--text-secondary);
+    margin: var(--space-8) 0;
+    max-width: 600px;
 
     @include mobile {
-      font-size: 1.2em;
-      line-height: 30px;
+      font-size: 1.1em;
+      line-height: 1.5;
       max-width: 100%;
-      margin: 50px 0;
+      margin: var(--space-6) 0;
+    }
+  }
+
+  .scroll-indicator {
+    width: 26px;
+    height: 42px;
+    border: 2px solid rgba($purple, 0.6);
+    border-radius: 20px;
+    position: relative;
+    margin: 10px auto 0;
+    opacity: 0.8;
+
+    &:after {
+      content: '';
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      width: 6px;
+      height: 6px;
+      margin-left: -3px;
+      background: $purple;
+      border-radius: 50%;
+      animation: scroll-dot 1.6s ease-in-out infinite;
+    }
+  }
+
+  @keyframes scroll-dot {
+    0% { transform: translateY(0); opacity: 1; }
+    70% { transform: translateY(16px); opacity: 0; }
+    100% { transform: translateY(16px); opacity: 0; }
+  }
+}
+
+// Add styles for hero role in both light and dark mode
+.hero-section {
+  .hero-role {
+    &-prefix {
+      color: var(--text-tertiary);
+    }
+    
+    &-typed {
+      color: var(--primary);
+      font-weight: 600;
+    }
+    
+    &-cursor {
+      background-color: var(--primary);
+    }
+  }
+}
+
+// Dark mode styles for Hero section
+[data-theme="dark"] {
+  .hero-section {
+    .hero-greeting {
+      color: #8b949e;
+    }
+    
+    .hero-name {
+      color: #f0f6fc;
+    }
+    
+    .hero-description {
+      color: #c9d1d9;
     }
   }
 }

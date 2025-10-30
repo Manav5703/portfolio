@@ -1,88 +1,241 @@
 @import '../scss/_colors';
+@import '../scss/_breakpoints';
 
 .about-container {
-  margin-top: 20vh;
+  width: 100%;
+  max-width: 900px;
   margin: 0 auto;
+}
 
-  .terminal {
-    .terminal-header {
-      height: 28px;
-      background-color: #e4e3e5;
-      border-radius: 10px 10px 0 0;
-      display: flex;
-      justify-content: flex-start;
-      align-items: center;
-
-      .header-button {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        margin-left: 9px;
-      }
-
-      .red {
-        background-color: #f96256;
-        border: solid 1px #f65549;
-      }
-
-      .yellow {
-        background-color: #fdbc3d;
-        border: solid 1px #ffb524;
-      }
-
-      .green {
-        background-color: #33c948;
-        border: solid 1px #2dbb41;
+.code-editor {
+  width: 100%;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-light);
+  font-family: var(--font-mono);
+  transition: all 0.3s ease;
+  
+  &:hover {
+    box-shadow: var(--shadow-xl);
+    transform: translateY(-4px);
+  }
+  
+  &__header {
+    height: 44px;
+    background-color: var(--bg-secondary);
+    display: flex;
+    align-items: center;
+    padding: 0 var(--space-4);
+    border-bottom: 1px solid var(--border-light);
+  }
+  
+  &__buttons {
+    display: flex;
+    gap: var(--space-2);
+    margin-right: var(--space-4);
+  }
+  
+  &__button {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    
+    &--close {
+      background-color: #ff5f56;
+      &:hover { background-color: #ff4242; }
+    }
+    
+    &--minimize {
+      background-color: #ffbd2e;
+      &:hover { background-color: #ffad0a; }
+    }
+    
+    &--expand {
+      background-color: #27c93f;
+      &:hover { background-color: #1db534; }
+    }
+  }
+  
+  &__title {
+    flex: 1;
+    font-size: 0.875rem;
+    color: var(--text-tertiary);
+    font-weight: 500;
+  }
+  
+  &__actions {
+    display: flex;
+    gap: var(--space-2);
+  }
+  
+  &__action {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    background-color: var(--bg-primary);
+    padding: var(--space-1) var(--space-2);
+    border-radius: var(--radius-sm);
+  }
+  
+  &__window {
+    display: flex;
+    height: 400px;
+    overflow-y: auto;
+    
+    @include mobile {
+      height: 300px;
+    }
+  }
+  
+  &__sidebar {
+    width: 50px;
+    background-color: var(--bg-secondary);
+    padding: var(--space-4) 0;
+    border-right: 1px solid var(--border-light);
+    flex-shrink: 0;
+  }
+  
+  &__line-number {
+    font-size: 0.75rem;
+    color: var(--text-tertiary);
+    text-align: right;
+    padding-right: var(--space-3);
+    line-height: 1.8;
+    user-select: none;
+  }
+  
+  &__content {
+    flex: 1;
+    padding: var(--space-4);
+    background-color: var(--bg-tertiary);
+  }
+  
+  &__lines {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+  
+  &__line {
+    font-size: 0.875rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-1);
+  }
+  
+  &__syntax {
+    &--keyword {
+      color: #c678dd; // Purple for keywords
+    }
+    
+    &--variable {
+      color: #e06c75; // Red for variables
+    }
+    
+    &--operator {
+      color: #56b6c2; // Cyan for operators
+    }
+    
+    &--string {
+      color: #98c379; // Green for strings
+      
+      a {
+        color: #61afef; // Blue for links
+        text-decoration: none;
+        position: relative;
+        transition: all 0.2s ease;
+        
+        &:hover {
+          text-decoration: underline;
+          color: #528bff;
+        }
       }
     }
+    
+    &--punctuation {
+      color: var(--text-tertiary);
+    }
+  }
+  
+  &__cursor {
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background-color: var(--primary);
+    animation: blink 1s step-end infinite;
+    vertical-align: middle;
+  }
+}
 
-    .terminal-window {
-      background-color: $fadedPurple;
-      border-radius: 0 0 4px 4px;
-      box-shadow: 0 50px 100px rgba(50, 50, 93, 0.15),
-        0 15px 35px rgba(50, 50, 93, 0.2), 0 5px 15px rgba(0, 0, 0, 0.12);
-      font-family: 'Monaco', Consolas, 'Lucida Console', monospace;
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
 
-      a {
-        color: $linkTeal;
+// Dark theme syntax highlighting adjustments
+[data-theme='dark'] {
+  .code-editor {
+    background-color: #1a1d2d;
+    border-color: #2a2f45;
+    
+    &__header {
+      background-color: #151826;
+      border-color: #2a2f45;
+    }
+    
+    &__sidebar {
+      background-color: #151826;
+      border-color: #2a2f45;
+    }
+    
+    &__content {
+      background-color: #1a1d2d;
+    }
+    
+    &__line {
+      color: #e6e6e6;
+    }
+    
+    &__line-number {
+      color: #636b8a;
+    }
+    
+    &__action {
+      background-color: #151826;
+      color: #a2a6c0;
+    }
+    
+    &__syntax {
+      &--keyword {
+        color: #c678dd; // Purple for keywords
       }
-
-      .statement:first-child {
-        padding-top: 35px;
+      
+      &--variable {
+        color: #ef6b73; // Brighter red for variables
       }
-
-      .statement:last-child {
-        padding-bottom: 60px;
+      
+      &--operator {
+        color: #56b6c2; // Cyan for operators
       }
-
-      .statement {
-        margin-bottom: 25px;
-        margin-left: 35px;
-        margin-right: 35px;
-        line-height: 24px;
-
-        .input-statement {
-          color: #f7f7f7;
-
-          &:before {
-            content: '>\a0';
+      
+      &--string {
+        color: #98c379; // Green for strings
+        
+        a {
+          color: #61afef; // Blue for links in dark mode
+          
+          &:hover {
+            color: #7cb7ff;
           }
         }
-
-        .return-statement {
-          color: #e7d184;
-        }
-
-        span {
-          background: rgba(247, 247, 247, 0.65);
-          animation: caret 1s steps(1) infinite;
-        }
-
-        @keyframes caret {
-          50% {
-            background-color: transparent;
-          }
-        }
+      }
+      
+      &--punctuation {
+        color: #abb2bf; // Lighter color for punctuation
       }
     }
   }
